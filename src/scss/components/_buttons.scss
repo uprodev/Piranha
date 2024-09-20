@@ -1,0 +1,90 @@
+.btn {
+  height: 64px;
+  font-weight: 700;
+  text-transform: uppercase;
+  overflow: hidden;
+
+  span {
+    z-index: 1;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+    height: 100%;
+
+    &:after {
+      content: attr(data-text);
+      display: inline-flex;
+      align-items: center;
+      position: absolute;
+      right: 0;
+      left: 0;
+      height: 100%;
+      top: 100%;
+    }
+  }
+
+  &:hover {
+    span {
+      transform: translateY(-100%);
+    }
+  }
+
+  &.btn-lg {
+    height: 72px;
+    border-radius: 0;
+    font-size: $btn-font-size;
+  }
+
+  &.btn-primary {
+    color: $white;
+    svg path {
+      stroke: $white;
+    }
+
+    &:hover {
+      background-color: $primary;
+      color: $white;
+
+      svg path {
+        stroke: $white;
+      }
+    }
+  }
+
+  &.btn-dark {
+    color: $white;
+    svg path {
+      stroke: $white;
+    }
+
+    &:hover {
+      background-color: $dark;
+      color: $white;
+
+      svg path {
+        stroke: $white;
+      }
+    }
+  }
+
+  &.btn-white {
+    &:hover {
+      background-color: $dark;
+      color: $white;
+
+      svg path {
+        stroke: $white;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    height: 50px;
+
+    &.btn-lg {
+      height: 58px;
+    }
+  }
+}

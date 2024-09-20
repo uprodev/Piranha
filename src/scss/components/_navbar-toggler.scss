@@ -1,0 +1,39 @@
+.navbar-toggler {
+  box-shadow: none;
+  width: 49px;
+  height: 40px;
+  background: none;
+  border-radius: 0;
+  border: none;
+  padding: 10px;
+  margin-left: 90px;
+
+  .navbar-toggler-icon {
+    display: block;
+    margin: auto;
+    width: 29px;
+    height: 0;
+    position: relative;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: $dark;
+      transition: all 0.2s linear;
+      border-radius: 0;
+    }
+
+    &:before {
+      width: 17px;
+      top: -4px;
+    }
+
+    &:after {
+      bottom: -6px;
+    }
+  }
+}

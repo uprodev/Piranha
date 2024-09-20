@@ -1,0 +1,111 @@
+.ico-link {
+  --color-base: #{$primary};
+  --color-hover: #{$dark};
+
+  display: inline-flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-base);
+  text-decoration: none;
+
+  svg {
+    display: block;
+    margin: 3px 10px 0 0;
+
+    path {
+      transition: all 0.3s;
+      fill: var(--color-base);
+    }
+  }
+
+  &:hover {
+    color: var(--color-hover);
+
+    svg path {
+      fill: var(--color-hover);
+    }
+  }
+}
+
+.scroll-link {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: $dark;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.link-more {
+  --color-base: #{$primary};
+  --color-hover: #{$dark};
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-base);
+  text-decoration: none;
+
+  svg {
+    display: block;
+    margin: 3px 0 0 8px;
+    transform: rotate(-90deg);
+    transform-origin: center;
+
+    path {
+      transition: all 0.3s;
+      fill: var(--color-base);
+    }
+  }
+
+  &:hover {
+    color: var(--color-hover);
+
+    svg path {
+      fill: var(--color-hover);
+    }
+  }
+}
+
+.link-back {
+  --color-base: #{$dark};
+  --color-hover: #{$primary};
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  color: var(--color-base);
+  text-decoration: none;
+
+  svg {
+    display: block;
+    margin: 3px 4px 0 0;
+    transform: rotate(90deg);
+    transform-origin: center;
+
+    path {
+      transition: all 0.3s;
+      fill: var(--color-base);
+    }
+  }
+
+  &:hover {
+    color: var(--color-hover);
+
+    svg path {
+      fill: var(--color-hover);
+    }
+  }
+}

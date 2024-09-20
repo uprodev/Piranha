@@ -1,0 +1,44 @@
+input,
+textarea,
+select {
+  &:focus {
+    box-shadow: none !important;
+    outline: none;
+  }
+}
+
+form {
+  letter-spacing: 0;
+
+  .form-field {
+    margin: 0 0 46px;
+  }
+
+  .form-label {
+    line-height: 1;
+  }
+
+  .form-control {
+    border-width: 0 0 1px;
+    padding-top: 0.5rem;
+  }
+
+  textarea.form-control {
+    border-width: 0;
+    height: 150px;
+    resize: none;
+  }
+
+  .btn {
+    min-width: 210px;
+  }
+
+  @include media-breakpoint-down(xxl) {
+    .form-field {
+      margin: 0 0 30px;
+    }
+    textarea.form-control {
+      height: 100px;
+    }
+  }
+}

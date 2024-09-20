@@ -1,0 +1,105 @@
+// font-family
+$font-family-base: "IBM Plex Sans", sans-serif;
+$font-family-headlines: "Favorit Pro", sans-serif;
+$font-family-book: "Favorit Pro Book", sans-serif;
+$font-family-exp: "ABC Favorit Exp", sans-serif;
+
+// colors
+$black: #000;
+$white: #fff;
+$primary: #3da9ff;
+$dark: #111212;
+$gray: #f5f7f9;
+
+$theme-colors: (
+  "primary": $primary,
+  "light": $gray,
+  "dark": $dark,
+  "white": $white,
+);
+
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+
+// font-size
+$font-size-base: 1.125rem;
+$line-height-base: 1.1;
+
+$h1-font-size: 6.25rem;
+$h2-font-size: 5.625rem;
+$h3-font-size: 1.125rem;
+$h4-font-size: 1rem;
+
+$h1-font-size-sm: 3rem;
+$h2-font-size-sm: 3rem;
+$h3-font-size-sm: 1.125rem;
+
+$grid-gutter-width: 1.25rem;
+$container-spacings: 2.5rem;
+$container-max: calc(1780px + #{$container-spacings});
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1400px,
+  xxl: 1700px,
+);
+
+// buttons
+$btn-padding-y: 0;
+$btn-padding-x: 1.5em;
+$btn-font-size: 0.9375rem;
+$btn-line-height: 1.2;
+$btn-white-space: "nowrap";
+$btn-border-width: 0;
+$btn-border-radius: 0;
+$btn-box-shadow: none;
+$btn-focus-box-shadow: none;
+$btn-disabled-opacity: 0.5;
+$btn-active-box-shadow: none;
+
+// forms
+$input-padding-y: 1.15rem;
+$input-padding-x: 0;
+$input-font-family: $font-family-base;
+$input-font-size: 1rem;
+$input-font-weight: 400;
+$input-line-height: 1.2;
+$input-bg: transparent;
+
+$input-color: $dark;
+$input-border-color: #d9dde0;
+$input-border-width: 1px;
+$input-box-shadow: none;
+$input-border-radius: 0;
+$input-focus-bg: $input-bg;
+$input-focus-border-color: $input-border-color;
+$input-focus-color: $input-color;
+
+$input-placeholder-color: #bbbbbb;
+
+$form-label-font-size: 1rem;
+$form-label-margin-bottom: 0;
+$form-label-font-weight: 400;
+
+// accordion
+$accordion-bg: transparent;
+$accordion-border-width: 0;
+$accordion-border-radius: 0;
+$accordion-inner-border-radius: 0;
+
+$accordion-button-bg: $accordion-bg;
+$accordion-button-active-bg: $accordion-bg;
+$accordion-button-active-color: $dark;
+
+$accordion-button-focus-box-shadow: none;
+
+$accordion-icon-width: 1.7rem;
+$accordion-icon-color: $dark;
+$accordion-icon-active-color: $dark;
+$accordion-icon-transition: transform 0.2s ease-in-out;
+$accordion-icon-transform: rotate(-180deg);
+
+$accordion-button-icon: url("data:image/svg+xml,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>  <path d='M17.5 11.75C12 11.75 12 12.1419 6.5 12.1419' stroke='#{$accordion-icon-color}' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' /><path d='M12 6.5L12 17.5' stroke='#{$accordion-icon-color}' stroke-width='1.5' stroke-linecap='round' /></svg>");
+$accordion-button-active-icon: url("data:image/svg+xml,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>  <path d='M17.5 11.8042C12 11.8042 12 12.1961 6.5 12.1961' stroke='#{$accordion-icon-active-color}' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' /></svg>");

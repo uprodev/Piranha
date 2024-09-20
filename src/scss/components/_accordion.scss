@@ -1,0 +1,67 @@
+.accordion {
+  .accordion-item {
+    border-bottom: 1px solid $dark;
+
+    .accordion-header {
+      .accordion-button {
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 42px 0 20px;
+        letter-spacing: -0.025em;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          right: 24px;
+          top: 55%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    .accordion-body {
+      color: #858688;
+      padding: 34px 13.2% 51px;
+      font-size: 16px;
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+          position: relative;
+          padding: 0 0 0 17px;
+          margin: 0 0 6.4px;
+
+          &:before {
+            content: "-";
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(xl) {
+    .accordion-item {
+      .accordion-header {
+        .accordion-button {
+          padding: 20px 0;
+
+          &:after {
+            right: 0;
+            top: 50%;
+          }
+        }
+      }
+
+      .accordion-body {
+        padding: 35px 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.home-section-1 {
+  width: 77%;
+  margin: 100vh auto 0;
+  background-color: $white;
+  opacity: 0;
+
+  .text {
+    width: 85%;
+    max-width: 1480px;
+    margin: auto;
+    font-family: $font-family-headlines;
+    font-size: clamp(2rem, 3.125vw, 3.75rem);
+    font-weight: 500;
+    line-height: 1.083;
+    padding: 25.2vh 0 13.3vh;
+    opacity: 0;
+  }
+
+  .video {
+    padding-top: 56.2%;
+    opacity: 0;
+  }
+
+  @include media-breakpoint-down(lg) {
+    width: 100%;
+    margin: 0;
+    opacity: 1;
+
+    .text {
+      width: 100%;
+      opacity: 1;
+      padding: 86px 0;
+    }
+
+    .video {
+      opacity: 1;
+    }
+  }
+}

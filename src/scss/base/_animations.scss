@@ -1,0 +1,39 @@
+.title-animated {
+  h1 {
+    line-height: 1;
+    height: 1em;
+    overflow: hidden;
+    text-transform: uppercase;
+
+    span {
+      display: block;
+      transform: translateY(-2em);
+    }
+  }
+}
+
+.animated-color {
+  color: #dfdfdf;
+}
+
+.animated-text-lines {
+  p {
+    visibility: hidden;
+  }
+
+  .line {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+.fade-in-wrapper {
+  & > * {
+    @extend .fade-in;
+  }
+}

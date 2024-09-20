@@ -1,0 +1,45 @@
+.product-header {
+  padding: 26.7vh 0 0;
+  margin: 0 0 19vh;
+
+  .link-back-wrapper {
+    margin: 0 0 122px;
+  }
+
+  .text {
+    border-bottom: 1px solid $dark;
+    padding: 0 0 17px;
+  }
+
+  h3 {
+    color: $primary;
+    letter-spacing: 0.05em;
+    margin: 0 0 5px;
+  }
+
+  p {
+    font-size: clamp(1.5rem, 1.667vw, 2rem);
+    line-height: 1.2;
+    text-indent: 3.65em;
+    margin: 0 0 0 35px;
+    letter-spacing: -0.045em;
+  }
+
+  @include media-breakpoint-down(lg) {
+    padding: 160px 0 0;
+    margin: 0 0 80px;
+
+    .link-back-wrapper {
+      margin: 0 0 60px;
+    }
+
+    h3 {
+      margin: 0 0 20px;
+    }
+
+    p {
+      margin: 0;
+      text-indent: 0;
+    }
+  }
+}
