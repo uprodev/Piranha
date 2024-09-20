@@ -283,8 +283,8 @@ if (getUrlParameter("id")) {
   tlHomeSection.play(0);
   tlHomeSectionAnimated = true;
   setTimeout(() => {
-    lenis.scrollTo(dest, { duration: 1, offset: -300 });
-  }, 1000);
+    lenis.scrollTo(dest, { duration: 1 });
+  }, 2000);
 }
 
 function initMap() {
