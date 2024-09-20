@@ -28,6 +28,10 @@
   .contact-map {
     margin: 138px -20px 0 0;
 
+    #map {
+      height: 206px;
+    }
+
     img {
       @include img-fit;
     }
@@ -67,34 +71,51 @@
     }
   }
 
-  .contact-form {
+  .tabs {
     margin: -12px 0 0;
 
-    .contact-link {
-      display: flex;
-      flex-direction: column;
-      color: #cbcbcb;
+    .nav-tabs {
+      border: none;
+      border-radius: 0;
       font-family: $font-family-headlines;
       font-size: clamp($h3-font-size-sm, 1.5625vw, 1.875rem);
       font-weight: 400;
-      text-decoration: none;
-      margin: 0 0 0 33px;
       letter-spacing: -0.03em;
+      flex-wrap: nowrap;
 
-      &:hover {
-        color: $primary;
+      li {
+        & + li {
+          margin-left: 33px;
+        }
       }
 
-      span {
-        font-family: $font-family-base;
-        font-size: 16px;
-        line-height: 20px;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin: 0 0 10px;
+      a {
+        color: #cbcbcb;
+        text-decoration: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        white-space: nowrap;
+
+        span {
+          font-family: $font-family-base;
+          font-size: 16px;
+          line-height: 20px;
+          font-weight: 700;
+          text-transform: uppercase;
+          margin: 0 0 10px;
+          display: block;
+        }
+
+        &:hover,
+        &.active {
+          color: $dark;
+        }
       }
     }
+  }
 
+  .contact-form {
     form {
       margin: 89px 0 0;
       padding: 0 10px 0 0;
@@ -113,9 +134,19 @@
       margin: 80px 0 0;
     }
 
-    .contact-form {
+    .tabs {
       margin: 0;
 
+      .nav-tabs {
+        a {
+          span {
+            font-size: 0.533em;
+          }
+        }
+      }
+    }
+
+    .contact-form {
       form {
         margin: 50px 0 0;
 
@@ -143,9 +174,13 @@
       }
     }
 
-    .contact-form {
-      .contact-link {
-        margin: 30px 0;
+    .tabs {
+      .nav-tabs {
+        a {
+          span {
+            font-size: 12px;
+          }
+        }
       }
     }
   }
@@ -154,8 +189,22 @@
     padding: 160px 0 0;
     margin: 0 0 100px;
 
-    .contact-form {
+    .tabs {
       margin: 60px 0 0;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .tabs {
+      .nav-tabs {
+        font-size: 16px;
+
+        li {
+          & + li {
+            margin-left: 20px;
+          }
+        }
+      }
     }
   }
 }

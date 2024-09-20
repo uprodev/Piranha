@@ -125,7 +125,9 @@
         
             <div class="row">
               <div class="col-md-6 col-lg-4 offset-lg-1">
-                <div class="contact-map fade-in"><img src="images/map.png" alt="" /></div>
+                <div class="contact-map fade-in">
+                  <div id="map" data-lat="49.80528372958007" data-lng="23.987265797303625" data-icon="images/pin.png"></div>
+                </div>
                 <div class="contact-info fade-in-wrapper">
                   <h3>Location</h3>
                   <ul>
@@ -149,35 +151,68 @@
                 </div>
               </div>
               <div class="col-md-6 col-lg-4 offset-lg-2">
-                <div class="contact-form">
-                  <div class="d-xl-flex align-items-end">
-                    <h3>Contact form</h3>
-                    <a href="mailto:Service@piranha-tech.net" class="contact-link">
-                      <span>Service@piranha-tech.net</span>
-                      Service maintenance
-                    </a>
+                <div class="tabs">
+                  <ul class="nav nav-tabs d-xl-flex align-items-end" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="tab1Nav" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Contact form</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="tab2Nav" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false"><span>Service@piranha-tech.net</span> Service maintenance</a>
+                    </li>
+                  </ul>
+        
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                      <div class="contact-form">
+                        <form action="#">
+                          <div class="row">
+                            <div class="col-md">
+                              <div class="form-field">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Name" />
+                              </div>
+                            </div>
+                            <div class="col-md">
+                              <div class="form-field">
+                                <label for="email" class="form-label">E-mail address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Your E-mail address" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-field">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" placeholder="Your message..."></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary"><span data-text="Submit >">Submit ></span></button>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                      <div class="contact-form">
+                        <form action="#">
+                          <div class="row">
+                            <div class="col-md">
+                              <div class="form-field">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Name" />
+                              </div>
+                            </div>
+                            <div class="col-md">
+                              <div class="form-field">
+                                <label for="email" class="form-label">E-mail address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Your E-mail address" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-field">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" placeholder="Your message..."></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary"><span data-text="Submit >">Submit ></span></button>
+                        </form>
+                      </div>
+                    </div>
                   </div>
-                  <form action="#">
-                    <div class="row">
-                      <div class="col-md">
-                        <div class="form-field">
-                          <label for="name" class="form-label">Name</label>
-                          <input type="text" class="form-control" id="name" placeholder="Name" />
-                        </div>
-                      </div>
-                      <div class="col-md">
-                        <div class="form-field">
-                          <label for="email" class="form-label">E-mail address</label>
-                          <input type="email" class="form-control" id="email" placeholder="Your E-mail address" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-field">
-                      <label for="message" class="form-label">Message</label>
-                      <textarea class="form-control" id="message" placeholder="Your message..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><span data-text="Submit >">Submit ></span></button>
-                  </form>
                 </div>
               </div>
             </div>
@@ -229,6 +264,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgSILt6_9GdKEZk_MMcXGifYXtzjPP_JI&callback=initMap&libraries=places&v=weekly" async></script>
 
 
 </body>

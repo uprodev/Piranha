@@ -109,19 +109,19 @@ if (document.querySelector(".home-banner")) {
     .to(".home-section-1", {
       opacity: 1,
       marginTop: animationTop,
-      duration: 0.3,
+      duration: 0.2,
       ease: "none",
     })
     .to(".home-banner .section-panel", {
       opacity: 0,
-      duration: 0.3,
+      duration: 0.2,
       ease: "none",
     })
     .to(".home-section-1", {
       width: "100%",
       marginTop: 0,
-      duration: 0.6,
-      ease: "power2.in",
+      duration: 1.5,
+      ease: "expo.out",
       onComplete: function () {
         tlHomeSectionAnimated = true;
         ScrollTrigger.refresh();
@@ -135,7 +135,7 @@ if (document.querySelector(".home-banner")) {
         duration: 0.4,
         ease: "power2.in",
       },
-      "-=0.3"
+      "-=1.2"
     )
     .to(
       ".home-section-1 .video",
@@ -144,7 +144,7 @@ if (document.querySelector(".home-banner")) {
         duration: 0.5,
         ease: "power2.in",
       },
-      "+=0.8"
+      "+=0.4"
     )
     .to(
       animatedColorChars.chars,
@@ -264,3 +264,182 @@ document.querySelectorAll(".fade-in, .fade-in-wrapper > *").forEach((el) => {
     ease: "power.easeIn",
   });
 });
+
+var getUrlParameter = function getUrlParameter(sParam) {
+  var sPageURL = window.location.search.substring(1),
+    sURLVariables = sPageURL.split("&"),
+    sParameterName,
+    i;
+  for (i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split("=");
+    if (sParameterName[0] === sParam) {
+      return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+    }
+  }
+  return false;
+};
+if (getUrlParameter("id")) {
+  var dest = document.getElementById(getUrlParameter("id"));
+  tlHomeSection.play(0);
+  tlHomeSectionAnimated = true;
+  setTimeout(() => {
+    lenis.scrollTo(dest, { duration: 1, offset: -300 });
+  }, 1000);
+}
+
+function initMap() {
+  var stylers = [
+    {
+      featureType: "administrative",
+      elementType: "geometry.fill",
+      stylers: [
+        {
+          visibility: "on",
+        },
+      ],
+    },
+    {
+      featureType: "administrative",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#0098DB ",
+        },
+      ],
+    },
+    {
+      featureType: "landscape",
+      elementType: "all",
+      stylers: [
+        {
+          color: "#F2F2F2 ",
+        },
+      ],
+    },
+    {
+      featureType: "landscape",
+      elementType: "geometry.fill",
+      stylers: [
+        {
+          color: "#FFFFFF ",
+        },
+      ],
+    },
+    {
+      featureType: "landscape",
+      elementType: "labels.text",
+      stylers: [
+        {
+          color: "#0098DB ",
+        },
+      ],
+    },
+    {
+      featureType: "landscape",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          visibility: "simplified",
+        },
+      ],
+    },
+    {
+      featureType: "landscape.natural",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#FF0000 ",
+        },
+      ],
+    },
+    {
+      featureType: "poi",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "road",
+      elementType: "all",
+      stylers: [
+        {
+          saturation: -100,
+        },
+        {
+          lightness: 45,
+        },
+      ],
+    },
+    {
+      featureType: "road.highway",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "simplified",
+        },
+      ],
+    },
+    {
+      featureType: "road.local",
+      elementType: "geometry.fill",
+      stylers: [
+        {
+          color: "#F4F4F4 ",
+        },
+      ],
+    },
+    {
+      featureType: "road.local",
+      elementType: "geometry.stroke",
+      stylers: [
+        {
+          color: "#F4F4F4 ",
+        },
+      ],
+    },
+    {
+      featureType: "transit",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "water",
+      elementType: "all",
+      stylers: [
+        {
+          color: "#F5F8FA ",
+        },
+        {
+          visibility: "on",
+        },
+      ],
+    },
+  ];
+
+  if (document.getElementById("map")) {
+    let map,
+      mapContainer = document.getElementById("map"),
+      mapImage = mapContainer.getAttribute("data-icon"),
+      mapLat = parseFloat(mapContainer.getAttribute("data-lat")),
+      mapLng = parseFloat(mapContainer.getAttribute("data-lng"));
+
+    map = new google.maps.Map(mapContainer, {
+      center: { lat: mapLat, lng: mapLng },
+      zoom: 13,
+      styles: stylers,
+    });
+
+    let marker = new google.maps.Marker({
+      map: map,
+      position: { lat: mapLat, lng: mapLng },
+      icon: mapImage,
+    });
+  }
+}

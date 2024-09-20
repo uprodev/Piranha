@@ -71,6 +71,7 @@
     text-transform: uppercase;
     margin: 0 33px 0 42px;
     transition: all 0.5s;
+    height: 64px;
 
     button {
       border: none;
@@ -89,6 +90,7 @@
       position: relative;
       z-index: 2;
       transition: all 0.5s;
+      height: 100%;
 
       &:after {
         content: "";
@@ -106,11 +108,11 @@
       z-index: 1;
       background-color: $light;
       margin: 0;
-      padding: 30px 20px 10px;
+      padding: 64px 20px 10px;
       list-style: none;
       left: -20px;
       right: -20px;
-      top: -10px;
+      top: 0;
       line-height: 1.5;
       display: none;
       transition: all 0.5s;
@@ -288,6 +290,11 @@
     }
     .lang-switcher {
       margin: 0 20px;
+      height: 50px;
+
+      ul {
+        padding-top: 50px;
+      }
     }
 
     &.header-light {
@@ -315,7 +322,7 @@
   background-color: $white;
   padding: 45px 0 70px;
   transform: translateY(-120%);
-  transition: all 0.5s ease-in-out;
+  transition: all 2s cubic-bezier(0.11, 1.11, 0, 0.98);
 
   &.active {
     transform: translateY(0);
