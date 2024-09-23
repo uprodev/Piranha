@@ -29,16 +29,19 @@ if( function_exists('acf_add_options_page') ) {
 	acf_add_options_sub_page('Theme Settings');
 }
 
+/* Support SVG */
 
+add_filter( 'upload_mimes', 'svg_upload_allow' );
 
-function phone_clear($phone_num){ 
-    $phone_num = preg_replace("![^0-9]+!",'',$phone_num);
-    return($phone_num); 
-}				
+function svg_upload_allow( $mimes ) {
+    $mimes['svg']  = 'image/svg+xml';
+
+    return $mimes;
+}
 
 
 function my_acf_init() {
-	acf_update_setting('google_api_key', 'AIzaSyAh1NE8kfXzx31UyPrwTCqwJdETUseulmI');
+	acf_update_setting('google_api_key', 'AIzaSyBgSILt6_9GdKEZk_MMcXGifYXtzjPP_JI');
 }
 
 add_action('acf/init', 'my_acf_init');
