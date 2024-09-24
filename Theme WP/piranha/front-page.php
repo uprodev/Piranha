@@ -3,10 +3,11 @@
 get_header();
 
 $video = get_field('video2');
-$title = get_field('title');
 $description = get_field('description');
-$button_sound = get_field('button_sound2');
-
+$button_sound = get_field('video_sound2');
+$news_description = get_field('news_description');
+$default_news = get_field('default_news');
+$i = 1;
 ?>
 
     <section class="home-section-1">
@@ -33,49 +34,26 @@ $button_sound = get_field('button_sound2');
     </section>
     <section class="home-section-2">
         <div class="container-fluid">
-            <div class="text animated-text-lines">
-                <p>One of the leading companies in the field of electronic warfare is Raytheon Technologies. This American company has a long and rich history in the development and production of electronic warfare (EW) systems</p>
-            </div>
-            <div class="news-list">
-                <div class="row">
-                    <div class="col-md-4 col-lg-4">
-                        <div class="news-item">
-                            <div class="item-image fade-in">
-                                <a href="#"><img src="images/home3.png" alt="" /></a>
-                            </div>
-                            <div class="item-text fade-in">
-                                <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
-                                <a href="#" class="link-more">
-                                    Read more
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
-                                        <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                        <div class="news-item">
-                            <div class="item-image fade-in">
-                                <a href="#"><img src="images/home4.png" alt="" /></a>
-                            </div>
-                            <div class="item-text fade-in">
-                                <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
-                                <a href="#" class="link-more">
-                                    Read more
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
-                                        <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-lg-5">
-                        <div class="row">
-                            <div class="col-lg-6">
+            <?php if($news_description):?>
+                <div class="text animated-text-lines">
+                    <p><?= $news_description;?></p>
+                </div>
+            <?php endif;?>
+
+            <?php if($default_news):
+                $news = new WP_Query([
+                    'post_type' => 'post',
+                    'posts_per_page' => 3,
+                    'orderby' => 'date',
+                    'order' => 'desc',
+                ]);?>
+                <div class="news-list">
+                    <div class="row">
+                        <?php while($news->have_posts()): $news->the_post();?>
+                            <div class="col-md-4 col-lg-4">
                                 <div class="news-item">
                                     <div class="item-image fade-in">
-                                        <a href="#"><img src="images/home5.png" alt="" /></a>
+                                        <a href="#"><img src="images/home3.png" alt="" /></a>
                                     </div>
                                     <div class="item-text fade-in">
                                         <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
@@ -88,10 +66,103 @@ $button_sound = get_field('button_sound2');
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-4 col-lg-3">
+                                <div class="news-item">
+                                    <div class="item-image fade-in">
+                                        <a href="#"><img src="images/home4.png" alt="" /></a>
+                                    </div>
+                                    <div class="item-text fade-in">
+                                        <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
+                                        <a href="#" class="link-more">
+                                            Read more
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                                <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-5">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="news-item">
+                                            <div class="item-image fade-in">
+                                                <a href="#"><img src="images/home5.png" alt="" /></a>
+                                            </div>
+                                            <div class="item-text fade-in">
+                                                <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
+                                                <a href="#" class="link-more">
+                                                    Read more
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                                        <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php $i++; endwhile; wp_reset_postdata(); $i = 1;?>
+                    </div>
+                </div>
+            <?php else:?>
+                <div class="news-list">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4">
+                            <div class="news-item">
+                                <div class="item-image fade-in">
+                                    <a href="#"><img src="images/home3.png" alt="" /></a>
+                                </div>
+                                <div class="item-text fade-in">
+                                    <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
+                                    <a href="#" class="link-more">
+                                        Read more
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                            <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3">
+                            <div class="news-item">
+                                <div class="item-image fade-in">
+                                    <a href="#"><img src="images/home4.png" alt="" /></a>
+                                </div>
+                                <div class="item-text fade-in">
+                                    <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
+                                    <a href="#" class="link-more">
+                                        Read more
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                            <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-5">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="news-item">
+                                        <div class="item-image fade-in">
+                                            <a href="#"><img src="images/home5.png" alt="" /></a>
+                                        </div>
+                                        <div class="item-text fade-in">
+                                            <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
+                                            <a href="#" class="link-more">
+                                                Read more
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                                    <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endif;?>
         </div>
     </section>
     <section id="products" class="home-section-3">

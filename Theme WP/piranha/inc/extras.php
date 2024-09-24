@@ -7,17 +7,44 @@ function phone_clear($phone_num){
     return($phone_num);
 }
 
-/* pagination markup */
+/* post ago */
 
-add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
-function my_navigation_template( $template, $class ){
+function time_ago($post_id) {
+    $post_time = get_the_time('U', $post_id);
+    $current_time = current_time('timestamp');
 
-    return '
-	<nav class="navigation %1$s" role="navigation">
-		<div class="nav-links">%3$s</div>
-	</nav>
-	';
+    $time_diff = $current_time - $post_time;
+
+    $minutes = 60;
+    $hours = $minutes * 60;
+    $days = $hours * 24;
+    $weeks = $days * 7;
+    $months = $days * 30;
+    $years = $days * 365;
+
+    if ($time_diff < $minutes) {
+        return 'Just now';
+    } elseif ($time_diff < $hours) {
+        $minutes_ago = floor($time_diff / $minutes);
+        return $minutes_ago . ' minute' . ($minutes_ago > 1 ? 's' : '') . ' ago';
+    } elseif ($time_diff < $days) {
+        $hours_ago = floor($time_diff / $hours);
+        return $hours_ago . ' hour' . ($hours_ago > 1 ? 's' : '') . ' ago';
+    } elseif ($time_diff < $weeks) {
+        $days_ago = floor($time_diff / $days);
+        return $days_ago . ' day' . ($days_ago > 1 ? 's' : '') . ' ago';
+    } elseif ($time_diff < $months) {
+        $weeks_ago = floor($time_diff / $weeks);
+        return $weeks_ago . ' week' . ($weeks_ago > 1 ? 's' : '') . ' ago';
+    } elseif ($time_diff < $years) {
+        $months_ago = floor($time_diff / $months);
+        return $months_ago . ' month' . ($months_ago > 1 ? 's' : '') . ' ago';
+    } else {
+        $years_ago = floor($time_diff / $years);
+        return $years_ago . ' year' . ($years_ago > 1 ? 's' : '') . ' ago';
+    }
 }
+
 
 /* excerpt */
 
@@ -30,30 +57,3 @@ add_filter( 'excerpt_more', function( $more ) {
 } );
 
 add_filter('wpcf7_autop_or_not', '__return_false');
-
-/*  Custom Pagination */
-
-function custom_paged(){
-
-    global $wp_query;
-    $pgd = get_query_var('paged');
-
-    if($pgd==0){
-        $current_page = $pgd+1;
-    }else{
-        $current_page = $pgd;
-    }
-    $pgs = $wp_query->max_num_pages;
-
-    if($pgs>1) {
-        echo '<nav class="navigation " role="navigation">
-            <div class="nav-links">
-                <a class="prev page-numbers" href="' . get_previous_posts_page_link() . '" alt=""><img src="' . get_template_directory_uri() . '/img/chev_p.svg" alt=""></a>
-                <span aria-current="page" class="page-numbers current"> ' . $current_page . '</span>
-                <span class="pg-sep"> / ' . $pgs . '</span>
-                <a class="next page-numbers" href="' . get_next_posts_page_link() . '"><img src="' . get_template_directory_uri() . '/img/chev_p.svg" alt=""></a>
-            </div>
-        </nav>';
-    }
-}
-
