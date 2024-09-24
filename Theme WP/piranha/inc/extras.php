@@ -49,11 +49,11 @@ function time_ago($post_id) {
 /* excerpt */
 
 add_filter( 'excerpt_length', function(){
-    return 20;
+    return 27;
 } );
 
 add_filter( 'excerpt_more', function( $more ) {
-    return '...';
+    return '';
 } );
 
 add_filter('wpcf7_autop_or_not', '__return_false');

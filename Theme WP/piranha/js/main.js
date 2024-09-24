@@ -241,13 +241,14 @@ if (document.querySelector(".animated-text-lines")) {
   }
 
   splitLines();
-
-  var winWidth = $(window).width();
-  $(window).on("resize", function () {
-    if ($(window).width() !== winWidth) {
-      splitLines();
-      winWidth = $(window).width();
-    }
+  jQuery(document).ready(function ($) {
+    var winWidth = $(window).width();
+    $(window).on("resize", function () {
+      if ($(window).width() !== winWidth) {
+        splitLines();
+        winWidth = $(window).width();
+      }
+    });
   });
 }
 

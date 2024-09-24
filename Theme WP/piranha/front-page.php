@@ -7,7 +7,11 @@ $description = get_field('description');
 $button_sound = get_field('video_sound2');
 $news_description = get_field('news_description');
 $default_news = get_field('default_news');
+$news = get_field('news');
 $i = 1;
+
+$title_products = get_field('title_products');
+
 ?>
 
     <section class="home-section-1">
@@ -32,6 +36,7 @@ $i = 1;
             </div>
         </div>
     </section>
+
     <section class="home-section-2">
         <div class="container-fluid">
             <?php if($news_description):?>
@@ -39,251 +44,148 @@ $i = 1;
                     <p><?= $news_description;?></p>
                 </div>
             <?php endif;?>
+            <div class="news-list">
+                <div class="row">
+                    <?php if($default_news):
+                        $news_def = new WP_Query([
+                            'post_type' => 'post',
+                            'posts_per_page' => 3,
+                            'orderby' => 'date',
+                            'order' => 'desc',
+                        ]);
 
-            <?php if($default_news):
-                $news = new WP_Query([
-                    'post_type' => 'post',
-                    'posts_per_page' => 3,
-                    'orderby' => 'date',
-                    'order' => 'desc',
-                ]);?>
-                <div class="news-list">
-                    <div class="row">
-                        <?php while($news->have_posts()): $news->the_post();?>
-                            <div class="col-md-4 col-lg-4">
-                                <div class="news-item">
-                                    <div class="item-image fade-in">
-                                        <a href="#"><img src="images/home3.png" alt="" /></a>
-                                    </div>
-                                    <div class="item-text fade-in">
-                                        <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
-                                        <a href="#" class="link-more">
-                                            Read more
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
-                                                <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-lg-3">
-                                <div class="news-item">
-                                    <div class="item-image fade-in">
-                                        <a href="#"><img src="images/home4.png" alt="" /></a>
-                                    </div>
-                                    <div class="item-text fade-in">
-                                        <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
-                                        <a href="#" class="link-more">
-                                            Read more
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
-                                                <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-lg-5">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="news-item">
-                                            <div class="item-image fade-in">
-                                                <a href="#"><img src="images/home5.png" alt="" /></a>
+                        $n = '';
+
+                        while($news_def->have_posts()): $news_def->the_post();
+                            if($i==1){
+                                $n=4;
+                            }elseif($i==2){
+                                $n=3;
+                            }else{
+                                $n=5;
+                            }?>
+                                <div class="col-md-4 col-lg-<?= $n;?>">
+                                        <?php if($i==3):?>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="news-item">
+                                                        <div class="item-image fade-in">
+                                                            <a href="<?php the_permalink();?>"><img src="<?php the_post_thumbnail_url();?>" alt="" /></a>
+                                                        </div>
+                                                        <div class="item-text fade-in">
+                                                            <?php the_excerpt();?>
+                                                            <a href="<?php the_permalink();?>" class="link-more">
+                                                                <?= __('Read more', 'piranha');?>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                                                    <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                                                </svg>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="item-text fade-in">
-                                                <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
-                                                <a href="#" class="link-more">
-                                                    Read more
-                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
-                                                        <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
-                                                    </svg>
-                                                </a>
+                                        <?php else:?>
+                                            <div class="news-item">
+                                                <div class="item-image fade-in">
+                                                    <a href="<?php the_permalink();?>"><img src="<?php the_post_thumbnail_url();?>" alt="" /></a>
+                                                </div>
+                                                <div class="item-text fade-in">
+                                                    <?php the_excerpt();?>
+                                                    <a href="<?php the_permalink();?>" class="link-more">
+                                                        <?= __('Read more', 'piranha');?>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                                            <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        <?php endif;?>
+                                    </div>
+                            <?php $i++; endwhile; wp_reset_postdata(); $i = 1;
+
+                    else:
+
+                        $n = '';
+
+                        foreach( $news as $post):setup_postdata($post);
+                            if($i==1){
+                                $n=4;
+                            }elseif($i==2){
+                                $n=3;
+                            }else{
+                                $n=5;
+                            }?>
+
+                            <div class="col-md-4 col-lg-<?= $n;?>">
+                                <?php if($i==3):?>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="news-item">
+                                                <div class="item-image fade-in">
+                                                    <a href="<?php the_permalink();?>"><img src="<?php the_post_thumbnail_url();?>" alt="" /></a>
+                                                </div>
+                                                <div class="item-text fade-in">
+                                                    <?php the_excerpt();?>
+                                                    <a href="<?php the_permalink();?>" class="link-more">
+                                                        <?= __('Read more', 'piranha');?>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                                            <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        <?php $i++; endwhile; wp_reset_postdata(); $i = 1;?>
-                    </div>
-                </div>
-            <?php else:?>
-                <div class="news-list">
-                    <div class="row">
-                        <div class="col-md-4 col-lg-4">
-                            <div class="news-item">
-                                <div class="item-image fade-in">
-                                    <a href="#"><img src="images/home3.png" alt="" /></a>
-                                </div>
-                                <div class="item-text fade-in">
-                                    <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
-                                    <a href="#" class="link-more">
-                                        Read more
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
-                                            <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3">
-                            <div class="news-item">
-                                <div class="item-image fade-in">
-                                    <a href="#"><img src="images/home4.png" alt="" /></a>
-                                </div>
-                                <div class="item-text fade-in">
-                                    <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
-                                    <a href="#" class="link-more">
-                                        Read more
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
-                                            <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-5">
-                            <div class="row">
-                                <div class="col-lg-6">
+                                <?php else:?>
                                     <div class="news-item">
                                         <div class="item-image fade-in">
-                                            <a href="#"><img src="images/home5.png" alt="" /></a>
+                                            <a href="<?php the_permalink();?>"><img src="<?php the_post_thumbnail_url();?>" alt="" /></a>
                                         </div>
                                         <div class="item-text fade-in">
-                                            <p>From strengthening the NATO alliance to building regional security, CEPA convenes security leaders from Europe and North America to ensure the future security of the transatlantic alliance</p>
-                                            <a href="#" class="link-more">
-                                                Read more
+                                            <?php the_excerpt();?>
+                                            <a href="<?php the_permalink();?>" class="link-more">
+                                                <?= __('Read more', 'piranha');?>
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
                                                     <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
                                                 </svg>
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                <?php endif;?>
                             </div>
-                        </div>
+
+                        <?php $i++;endforeach; wp_reset_postdata(); $i = 1; ?>
+                    <?php endif;?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="home-section-3">
+        <div class="container-fluid fade-in">
+            <?php if($title_products):?>
+                <div class="text-center">
+                    <h2><?= $title_products;?></h2>
+                </div>
+            <?php endif;?>
+
+            <?php $prods = new WP_Query([
+                'post_type' => 'product',
+                'posts_per_page' => -1,
+            ]);
+
+            if($prods->have_posts()):?>
+                <div class="product-list">
+                    <div class="row">
+                        <?php while($prods->have_posts()): $prods->the_post();
+
+                            get_template_part('parts/product');
+
+                        endwhile; wp_reset_postdata();?>
+
                     </div>
                 </div>
             <?php endif;?>
-        </div>
-    </section>
-    <section id="products" class="home-section-3">
-        <div class="container-fluid fade-in">
-            <div class="text-center">
-                <h2>Explore our products</h2>
-            </div>
-            <div class="product-list">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div href="#" class="item">
-                            <div class="item-image">
-                                <a href="#">
-                                    <span class="image-visible"><img src="images/home6.png" alt="" /></span>
-                                    <span class="image-overlay"><img src="images/home9.png" alt="" /></span>
-                                </a>
-                            </div>
-                            <a href="#" class="item-text">SPR UAV COUNTER SYSTEM</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div href="#" class="item">
-                            <div class="item-image">
-                                <a href="#">
-                                    <span class="image-visible"><img src="images/home7.png" alt="" /></span>
-                                    <span class="image-overlay"><img src="images/home9.png" alt="" /></span>
-                                </a>
-                            </div>
-                            <a href="#" class="item-text">
-                                EW COMPLEX OF COMPREHENSIVE ACTION<br />
-                                DOME PROTECTION DF-1
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div href="#" class="item">
-                            <div class="item-image">
-                                <a href="#">
-                                    <span class="image-visible"><img src="images/home8.png" alt="" /></span>
-                                    <span class="image-overlay"><img src="images/home9.png" alt="" /></span>
-                                </a>
-                            </div>
-                            <a href="#" class="item-text">PORTABLE DEVICE SF-3 UAV COUNTERS</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div href="#" class="item">
-                            <div class="item-image">
-                                <a href="#">
-                                    <span class="image-visible"><img src="images/home7.png" alt="" /></span>
-                                    <span class="image-overlay"><img src="images/home9.png" alt="" /></span>
-                                </a>
-                            </div>
-                            <a href="#" class="item-text">SPR UAV COUNTER SYSTEM</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div href="#" class="item">
-                            <div class="item-image">
-                                <a href="#">
-                                    <span class="image-visible"><img src="images/home8.png" alt="" /></span>
-                                    <span class="image-overlay"><img src="images/home9.png" alt="" /></span>
-                                </a>
-                            </div>
-                            <a href="#" class="item-text">
-                                EW COMPLEX OF COMPREHENSIVE ACTION<br />
-                                DOME PROTECTION DF-1
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div href="#" class="item">
-                            <div class="item-image">
-                                <a href="#">
-                                    <span class="image-visible"><img src="images/home6.png" alt="" /></span>
-                                    <span class="image-overlay"><img src="images/home9.png" alt="" /></span>
-                                </a>
-                            </div>
-                            <a href="#" class="item-text">PORTABLE DEVICE SF-3 UAV COUNTERS</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div href="#" class="item">
-                            <div class="item-image">
-                                <a href="#">
-                                    <span class="image-visible"><img src="images/home6.png" alt="" /></span>
-                                    <span class="image-overlay"><img src="images/home9.png" alt="" /></span>
-                                </a>
-                            </div>
-                            <a href="#" class="item-text">SPR UAV COUNTER SYSTEM</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div href="#" class="item">
-                            <div class="item-image">
-                                <a href="#">
-                                    <span class="image-visible"><img src="images/home7.png" alt="" /></span>
-                                    <span class="image-overlay"><img src="images/home9.png" alt="" /></span>
-                                </a>
-                            </div>
-                            <a href="#" class="item-text">
-                                EW COMPLEX OF COMPREHENSIVE ACTION<br />
-                                DOME PROTECTION DF-1
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div href="#" class="item">
-                            <div class="item-image">
-                                <a href="#">
-                                    <span class="image-visible"><img src="images/home8.png" alt="" /></span>
-                                    <span class="image-overlay"><img src="images/home9.png" alt="" /></span>
-                                </a>
-                            </div>
-                            <a href="#" class="item-text">PORTABLE DEVICE SF-3 UAV COUNTERS</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
