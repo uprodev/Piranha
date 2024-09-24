@@ -8,6 +8,7 @@ Template Name: Contacts
 
 get_header();
 
+$mail = get_field('mail');
 
 ?>
 
@@ -16,8 +17,10 @@ get_header();
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="fade-in-wrapper">
-                        <h1 class="h2">Let’s collaborate</h1>
-                        <h4><a href="mailto:support@piranha-tech.net">support@piranha-tech.net</a></h4>
+                        <h1 class="h2"><?php the_title();?></h1>
+                        <?php if($mail):?>
+                            <h4><a href="mailto:<?= $mail;?>"><?= $mail;?></a></h4>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>
