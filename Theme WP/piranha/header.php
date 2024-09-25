@@ -70,26 +70,11 @@
         <div class="container-fluid">
             <button class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
             <div class="navigation-main">
-                <ul>
-                    <li><a href="#">Anti-Drone Rifle</a></li>
-                    <li><a href="#">Directed ew Series-T</a></li>
-                    <li>
-                        <a href="#">Dome EW</a>
-                        <ul>
-                            <li><a href="#">Series-df</a></li>
-                            <li><a href="#">Series-had</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Stationary EW</a>
-                        <ul>
-                            <li><a href="#">Spr</a></li>
-                            <li><a href="#">mspUAV-12</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Complex EW</a></li>
-                    <li><a href="#">News</a></li>
-                </ul>
+                <?php wp_nav_menu([
+                    'theme_location' => 'main-menu',
+                    'container' => false,
+                    'menu_class' => '',
+                ]);?>
             </div>
             <div class="header-navbar-bottom">
                 <?php $linkd = get_field('download_link', 'options');
