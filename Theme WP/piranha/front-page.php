@@ -104,58 +104,58 @@ $title_products = get_field('title_products');
                             <?php $i++; endwhile; wp_reset_postdata(); $i = 1;
 
                     else:
+                        if($news):
+                            $n = '';
+                            foreach( $news as $post):setup_postdata($post);
+                                if($i==1){
+                                    $n=4;
+                                }elseif($i==2){
+                                    $n=3;
+                                }else{
+                                    $n=5;
+                                }?>
 
-                        $n = '';
-
-                        foreach( $news as $post):setup_postdata($post);
-                            if($i==1){
-                                $n=4;
-                            }elseif($i==2){
-                                $n=3;
-                            }else{
-                                $n=5;
-                            }?>
-
-                            <div class="col-md-4 col-lg-<?= $n;?>">
-                                <?php if($i==3):?>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="news-item">
-                                                <div class="item-image fade-in">
-                                                    <a href="<?php the_permalink();?>"><img src="<?php the_post_thumbnail_url();?>" alt="" /></a>
-                                                </div>
-                                                <div class="item-text fade-in">
-                                                    <?php the_excerpt();?>
-                                                    <a href="<?php the_permalink();?>" class="link-more">
-                                                        <?= __('Read more', 'piranha');?>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
-                                                            <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
-                                                        </svg>
-                                                    </a>
+                                <div class="col-md-4 col-lg-<?= $n;?>">
+                                    <?php if($i==3):?>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="news-item">
+                                                    <div class="item-image fade-in">
+                                                        <a href="<?php the_permalink();?>"><img src="<?php the_post_thumbnail_url();?>" alt="" /></a>
+                                                    </div>
+                                                    <div class="item-text fade-in">
+                                                        <?php the_excerpt();?>
+                                                        <a href="<?php the_permalink();?>" class="link-more">
+                                                            <?= __('Read more', 'piranha');?>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                                                <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                                            </svg>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php else:?>
-                                    <div class="news-item">
-                                        <div class="item-image fade-in">
-                                            <a href="<?php the_permalink();?>"><img src="<?php the_post_thumbnail_url();?>" alt="" /></a>
+                                    <?php else:?>
+                                        <div class="news-item">
+                                            <div class="item-image fade-in">
+                                                <a href="<?php the_permalink();?>"><img src="<?php the_post_thumbnail_url();?>" alt="" /></a>
+                                            </div>
+                                            <div class="item-text fade-in">
+                                                <?php the_excerpt();?>
+                                                <a href="<?php the_permalink();?>" class="link-more">
+                                                    <?= __('Read more', 'piranha');?>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
+                                                        <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="item-text fade-in">
-                                            <?php the_excerpt();?>
-                                            <a href="<?php the_permalink();?>" class="link-more">
-                                                <?= __('Read more', 'piranha');?>
-                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
-                                                    <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                <?php endif;?>
-                            </div>
+                                    <?php endif;?>
+                                </div>
 
-                        <?php $i++;endforeach; wp_reset_postdata(); $i = 1; ?>
-                    <?php endif;?>
+                            <?php $i++;endforeach; wp_reset_postdata(); $i = 1;
+                        endif;
+                    endif;?>
                 </div>
             </div>
         </div>

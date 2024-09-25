@@ -41,13 +41,24 @@
                         <input type="search" name="s" id="search" value="<?php the_search_query(); ?>" placeholder="<?php the_field('search_placeholder', 'options');?>" />
                     </form>
                 </div>
-                <div class="lang-switcher">
-                    <button type="button">En</button>
-                    <ul>
-                        <li><a href="#">en</a></li>
-                        <li><a href="#">de</a></li>
-                    </ul>
-                </div>
+                <?php $languages = apply_filters( 'wpml_active_languages', NULL, 'skip_missing=0' );
+
+                if ( !empty( $languages ) ) {
+                    echo '<div class="lang-switcher">';
+                        foreach ( $languages as $lang ) {
+                            if ( $lang['active'] ) {
+                                echo '<button type="button">'.$lang['language_code'].'</button>';
+                            }
+                        }
+                        echo '<ul>';
+                            foreach ( $languages as $lang ) {
+                                echo '<li><a href="' . $lang['url'] . '">' . $lang['language_code'] . '</a></li>';
+                            }
+                        echo '</ul>';
+                    echo '</div>';
+                }
+                ?>
+
                 <?php $link = get_field('button', 'options');
 
                 if( $link ):
