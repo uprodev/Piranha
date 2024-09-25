@@ -12,6 +12,16 @@ $mail = get_field('mail');
 $map = get_field('map');
 $lat = $map['lat'];
 $lng = $map['lng'];
+
+$location_title = get_field('location_title');
+$location_info = get_field('location_info');
+
+$form_title_1 = get_field('form_title_1');
+$form_1 = get_field('form_1');
+$form_title_2 = get_field('form_title_2');
+$form_2 = get_field('form_2');
+$service_mail = get_field('service_mail');
+
 ?>
 
     <section class="block-contact">
@@ -33,89 +43,51 @@ $lng = $map['lng'];
                         <div id="map" data-lat="<?= $lat?$lat:'49.80528372958007';?>" data-lng="<?= $lat?$lat:'23.987265797303625';?>" data-icon="<?= get_template_directory_uri();?>/images/pin.png"></div>
                     </div>
                     <div class="contact-info fade-in-wrapper">
-                        <h3>Location</h3>
-                        <ul>
-                            <li>
-                                <h4>Country</h4>
-                                Ukraine
-                            </li>
-                            <li>
-                                <h4>City</h4>
-                                Lviv
-                            </li>
-                            <li>
-                                <h4>Street</h4>
-                                Naukova, 99
-                            </li>
-                            <li>
-                                <h4>Phone number</h4>
-                                <a href="tel:+380963228273">+38 096 322 8 273</a>
-                            </li>
-                        </ul>
+                        <?php if($location_title):?>
+                            <h3><?= $location_title;?></h3>
+                        <?php endif;?>
+                        <?php if($location_info):?>
+                            <ul>
+                                <?php foreach($location_info as $li):?>
+                                    <li>
+                                        <h4><?= $li['title'];?></h4>
+                                        <?= $li['value'];?>
+                                    </li>
+                                <?php endforeach;?>
+                            </ul>
+                        <?php endif;?>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 offset-lg-2">
                     <div class="tabs">
                         <ul class="nav nav-tabs d-xl-flex align-items-end" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="tab1Nav" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Contact form</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab2Nav" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false"><span>Service@piranha-tech.net</span> Service maintenance</a>
-                            </li>
+                            <?php if($form_1):?>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="tab1Nav" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true"><?= $form_title_1;?></a>
+                                </li>
+                            <?php endif;?>
+                            <?php if($form_2):?>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab2Nav" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false"><?= $service_mail?'<span>'.$service_mail.'</span>':'';?> <?= $form_title_2;?></a>
+                                </li>
+                            <?php endif;?>
                         </ul>
 
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                                <div class="contact-form">
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <div class="form-field">
-                                                    <label for="name" class="form-label">Name</label>
-                                                    <input type="text" class="form-control" id="name" placeholder="Name" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md">
-                                                <div class="form-field">
-                                                    <label for="email" class="form-label">E-mail address</label>
-                                                    <input type="email" class="form-control" id="email" placeholder="Your E-mail address" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-field">
-                                            <label for="message" class="form-label">Message</label>
-                                            <textarea class="form-control" id="message" placeholder="Your message..."></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary"><span data-text="Submit >">Submit ></span></button>
-                                    </form>
+                            <?php if($form_1):?>
+                                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                                    <div class="contact-form">
+                                        <?= do_shortcode('[contact-form-7 id="'.$form_1.'"]');?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                                <div class="contact-form">
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <div class="form-field">
-                                                    <label for="name" class="form-label">Name</label>
-                                                    <input type="text" class="form-control" id="name" placeholder="Name" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md">
-                                                <div class="form-field">
-                                                    <label for="email" class="form-label">E-mail address</label>
-                                                    <input type="email" class="form-control" id="email" placeholder="Your E-mail address" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-field">
-                                            <label for="message" class="form-label">Message</label>
-                                            <textarea class="form-control" id="message" placeholder="Your message..."></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary"><span data-text="Submit >">Submit ></span></button>
-                                    </form>
+                            <?php endif;?>
+                            <?php if($form_2):?>
+                                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                                    <div class="contact-form">
+                                        <?= do_shortcode('[contact-form-7 id="'.$form_2.'"]');?>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>
