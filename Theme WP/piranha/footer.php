@@ -4,8 +4,11 @@
     <div class="container-fluid">
         <div class="footer-main">
             <div class="footer-logo">
-                <a href="#">
-                    <img src="./images/logo-blue.png" alt="" />
+                <a href="<?= get_home_url();?>">
+                    <?php $logo = get_field('footer_logo', 'options');
+                    if($logo):?>
+                        <img src="<?= $logo['url'];?>" alt="<?= $logo['alt'];?>" />
+                    <?php endif;?>
                 </a>
             </div>
             <nav class="footer-menu">
@@ -27,13 +30,28 @@
                         <li><a href="#">Privacy policy</a></li>
                         <li><a href="#">Terms of service</a></li>
                     </ul>
-                    <div class="copyright">&copy; Piranha-tech 2024</div>
-                    <div class="socials">
-                        <a href="#"><img src="images/icons/mail.svg" alt="" /></a>
-                        <a href="#"><img src="images/icons/phone.svg" alt="" /></a>
-                        <a href="#"><img src="images/icons/telegram.svg" alt="" /></a>
-                        <a href="#"><img src="images/icons/whatsapp.svg" alt="" /></a>
-                    </div>
+                    <div class="copyright"><?php the_field('copyright', 'options');?> <?= date('Y'); ?></div>
+                    <?php if(get_field('social_networks', 'options')):?>
+                        <div class="socials">
+                            <ul>
+                                <?php foreach(get_field('social_networks', 'options') as $sn):
+                                    $linksn = $sn['link'];
+
+                                    if( $linksn ):
+                                        $linksn_url = $linksn['url'];
+                                        $linksn_title = $linksn['title'];
+                                        $linksn_target = $linksn['target'] ? $linksn['target'] : '_self';
+                                        ?>
+                                        <li>
+                                            <a href="<?= esc_url($linksn_url); ?>" target="<?= esc_attr($linksn_target); ?>">
+                                                <img src="<?= $sn['icon']['url'];?>" alt="<?= $sn['icon']['alt'];?>" />
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach;?>
+                            </ul>
+                        </div>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
