@@ -54,23 +54,24 @@ document.querySelectorAll(".navbar-toggler").forEach((toggler) => {
 });
 
 // languages
-document.querySelector(".lang-switcher button").addEventListener("click", function (e) {
-  e.stopPropagation();
-  this.closest(".lang-switcher").classList.toggle("active");
-});
-document.querySelectorAll(".lang-switcher ul a").forEach((el) => {
-  el.addEventListener("click", function (e) {
+if (document.querySelector(".lang-switcher")) {
+  document.querySelector(".lang-switcher button").addEventListener("click", function (e) {
     e.stopPropagation();
-    e.preventDefault();
-    var text = this.innerText;
-    this.closest(".lang-switcher").querySelector("button").innerText = text;
-    this.closest(".lang-switcher").classList.remove("active");
+    this.closest(".lang-switcher").classList.toggle("active");
   });
-});
-document.addEventListener("click", function () {
-  document.querySelector(".lang-switcher").classList.remove("active");
-});
-
+  document.querySelectorAll(".lang-switcher ul a").forEach((el) => {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      // e.preventDefault();
+      var text = this.innerText;
+      this.closest(".lang-switcher").querySelector("button").innerText = text;
+      this.closest(".lang-switcher").classList.remove("active");
+    });
+  });
+  document.addEventListener("click", function () {
+    document.querySelector(".lang-switcher").classList.remove("active");
+  });
+}
 // video
 if (document.querySelector(".btn-sound")) {
   document.querySelectorAll(".btn-sound").forEach((btn) => {
