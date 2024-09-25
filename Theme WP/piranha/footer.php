@@ -12,24 +12,22 @@
                 </a>
             </div>
             <nav class="footer-menu">
-                <ul>
-                    <li><a href="#">Anti-Drone Rifle</a></li>
-                    <li><a href="#">Directed ew Series-T</a></li>
-                    <li><a href="#">Dome EW</a></li>
-                    <li><a href="#">Stationary EW</a></li>
-                    <li><a href="#">Complex EW</a></li>
-                    <li><a href="#">News</a></li>
-                </ul>
+                <?php wp_nav_menu([
+                    'theme_location' => 'footer-menu',
+                    'container' => false,
+                    'menu_class' => '',
+                ]);?>
             </nav>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="footer-panel bg-primary text-white">
-                    <ul>
-                        <li><a href="#">Privacy policy</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                    </ul>
+                    <?php wp_nav_menu([
+                        'theme_location' => 'footer-bottom',
+                        'container' => false,
+                        'menu_class' => '',
+                    ]);?>
                     <div class="copyright"><?php the_field('copyright', 'options');?> <?= date('Y'); ?></div>
                     <?php if(get_field('social_networks', 'options')):?>
                         <div class="socials">
