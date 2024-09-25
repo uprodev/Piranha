@@ -11,10 +11,11 @@ function add_styles() {
 
 
 function add_scripts() {
+    $key_map = get_field('google_map_api_key', 'options');
 
     wp_enqueue_script( 'plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery'), false, true);
     wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array('jquery'), false, true);
-    wp_enqueue_script( 'map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBgSILt6_9GdKEZk_MMcXGifYXtzjPP_JI&callback=initMap&libraries=places&v=weekly', array(), false, true);
+    wp_enqueue_script( 'map', 'https://maps.googleapis.com/maps/api/js?key='.$key_map.'&callback=initMap&libraries=places&v=weekly', array(), false, true);
 //    wp_enqueue_script( 'script', get_template_directory_uri() . '/js/script.js', array('jquery'), rand(1111, 9999), true);
 //
 //    wp_localize_script('script', 'globals',

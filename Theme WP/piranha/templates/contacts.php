@@ -9,7 +9,9 @@ Template Name: Contacts
 get_header();
 
 $mail = get_field('mail');
-
+$map = get_field('map');
+$lat = $map['lat'];
+$lng = $map['lng'];
 ?>
 
     <section class="block-contact">
@@ -28,7 +30,7 @@ $mail = get_field('mail');
             <div class="row">
                 <div class="col-md-6 col-lg-4 offset-lg-1">
                     <div class="contact-map fade-in">
-                        <div id="map" data-lat="49.80528372958007" data-lng="23.987265797303625" data-icon="images/pin.png"></div>
+                        <div id="map" data-lat="<?= $lat?$lat:'49.80528372958007';?>" data-lng="<?= $lat?$lat:'23.987265797303625';?>" data-icon="<?= get_template_directory_uri();?>/images/pin.png"></div>
                     </div>
                     <div class="contact-info fade-in-wrapper">
                         <h3>Location</h3>
