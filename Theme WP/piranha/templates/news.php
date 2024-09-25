@@ -114,7 +114,7 @@ $news_about = get_field('news_about');
                             get_template_part('parts/news-item');
 
                         endforeach; wp_reset_postdata(); ?>
-                        
+
                     </div>
 
                 <?php endif;?>
