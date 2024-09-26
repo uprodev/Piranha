@@ -13,7 +13,7 @@ $button_2 = get_field('button_2');
     <section class="product-header">
         <div class="container-fluid">
             <div class="link-back-wrapper fade-in">
-                <a href="<?= get_home_url();?>#products" class="link-back">
+                <a href="<?= get_home_url();?>?id=products" class="link-back">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 11 7" width="11" height="7">
                         <path d="M0.72,1.64V1.61c0-0.51,0.65-0.8,1.09-0.47L5,4.27c0.25,0.18,0.6,0.18,0.85-0.01l3.06-3.09 C9.34,0.83,10,1.12,10,1.64v0c0,0.18-0.09,0.36-0.24,0.47L5.78,5.86c-0.25,0.19-0.6,0.19-0.85,0L0.96,2.11 C0.8,1.99,0.72,1.82,0.72,1.64z" />
                     </svg>
