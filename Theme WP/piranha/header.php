@@ -31,16 +31,6 @@
                 <button class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
             </div>
             <div class="d-flex align-items-center">
-                <div class="header-search">
-                  <span class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                      <path d="M14.74,13.57l-2.83-2.82c0.91-1.17,1.41-2.6,1.41-4.08C13.32,2.98,10.34,0,6.66,0S0,2.98,0,6.66 c0,3.68,2.98,6.66,6.66,6.66c1.48,0,2.91-0.49,4.08-1.41l2.82,2.83c0.16,0.16,0.37,0.25,0.59,0.25c0.22,0,0.43-0.09,0.59-0.25 c0.16-0.16,0.25-0.37,0.25-0.59C14.99,13.93,14.91,13.72,14.74,13.57 M1.67,6.66c0-2.76,2.24-5,5-5c2.76,0,5,2.24,5,5 c0,2.76-2.24,5-5,5C3.9,11.66,1.67,9.42,1.67,6.66" />
-                    </svg>
-                  </span>
-                    <form action="/" method="get">
-                        <input type="search" name="s" id="search" value="<?php the_search_query(); ?>" placeholder="<?php the_field('search_placeholder', 'options');?>" />
-                    </form>
-                </div>
                 <?php $languages = apply_filters( 'wpml_active_languages', NULL, 'skip_missing=0' );
 
                 if ( !empty( $languages ) ) {
