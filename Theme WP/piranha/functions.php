@@ -3,7 +3,6 @@
 include 'inc/enqueue.php';     // add styles and scripts
 include 'inc/acf.php';         // custom acf functions
 include 'inc/extras.php';      // custom functions
-include 'classes/walker.php';  // walker nav menu
 
 
 add_action('after_setup_theme', 'theme_register_nav_menu');
