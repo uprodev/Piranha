@@ -28,6 +28,14 @@
       fill: var(--color-hover);
     }
   }
+
+  &.btn-sound {
+    font-size: 12px;
+    svg {
+      width: 16px;
+      margin-right: 5px;
+    }
+  }
 }
 
 .scroll-link {

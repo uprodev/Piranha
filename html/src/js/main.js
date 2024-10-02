@@ -154,7 +154,7 @@ if (document.querySelector(".home-banner")) {
         color: "#3da9ff",
         stagger: 0.05,
       },
-      "-=1.1"
+      "-=1.4"
     );
 
   let mm = gsap.matchMedia();
@@ -187,10 +187,10 @@ if (document.querySelector(".home-banner")) {
         trigger: ".animated-color",
         start: "top center",
       },
-      duration: 0.05,
+      duration: 0.04,
       ease: "none",
       color: "#3da9ff",
-      stagger: 0.05,
+      stagger: 0.03,
     });
 
     lenis.on("scroll", function () {
@@ -285,161 +285,4 @@ if (getUrlParameter("id")) {
   setTimeout(() => {
     lenis.scrollTo(dest, { duration: 1 });
   }, 2000);
-}
-
-function initMap() {
-  var stylers = [
-    {
-      featureType: "administrative",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          visibility: "on",
-        },
-      ],
-    },
-    {
-      featureType: "administrative",
-      elementType: "labels.text.fill",
-      stylers: [
-        {
-          color: "#0098DB ",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "all",
-      stylers: [
-        {
-          color: "#F2F2F2 ",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          color: "#FFFFFF ",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "labels.text",
-      stylers: [
-        {
-          color: "#0098DB ",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "labels.text.fill",
-      stylers: [
-        {
-          visibility: "simplified",
-        },
-      ],
-    },
-    {
-      featureType: "landscape.natural",
-      elementType: "labels.text.fill",
-      stylers: [
-        {
-          color: "#FF0000 ",
-        },
-      ],
-    },
-    {
-      featureType: "poi",
-      elementType: "all",
-      stylers: [
-        {
-          visibility: "off",
-        },
-      ],
-    },
-    {
-      featureType: "road",
-      elementType: "all",
-      stylers: [
-        {
-          saturation: -100,
-        },
-        {
-          lightness: 45,
-        },
-      ],
-    },
-    {
-      featureType: "road.highway",
-      elementType: "all",
-      stylers: [
-        {
-          visibility: "simplified",
-        },
-      ],
-    },
-    {
-      featureType: "road.local",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          color: "#F4F4F4 ",
-        },
-      ],
-    },
-    {
-      featureType: "road.local",
-      elementType: "geometry.stroke",
-      stylers: [
-        {
-          color: "#F4F4F4 ",
-        },
-      ],
-    },
-    {
-      featureType: "transit",
-      elementType: "all",
-      stylers: [
-        {
-          visibility: "off",
-        },
-      ],
-    },
-    {
-      featureType: "water",
-      elementType: "all",
-      stylers: [
-        {
-          color: "#F5F8FA ",
-        },
-        {
-          visibility: "on",
-        },
-      ],
-    },
-  ];
-
-  if (document.getElementById("map")) {
-    let map,
-      mapContainer = document.getElementById("map"),
-      mapImage = mapContainer.getAttribute("data-icon"),
-      mapLat = parseFloat(mapContainer.getAttribute("data-lat")),
-      mapLng = parseFloat(mapContainer.getAttribute("data-lng"));
-
-    map = new google.maps.Map(mapContainer, {
-      center: { lat: mapLat, lng: mapLng },
-      zoom: 13,
-      styles: stylers,
-    });
-
-    let marker = new google.maps.Marker({
-      map: map,
-      position: { lat: mapLat, lng: mapLng },
-      icon: mapImage,
-    });
-  }
 }
