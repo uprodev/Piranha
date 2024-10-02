@@ -56,13 +56,13 @@ $button_2 = get_field('button_2');
                 </div>
                 <div class="col-lg-6">
                     <?php if($description): $i=1;?>
-                        <div class="accordion fade-in-wrapper" id="accordion">
+                        <div class="accordion fade-in-wrapper">
                             <?php foreach ($description as $item):?>
                                 <div class="accordion-item">
                                     <h4 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $i;?>" aria-expanded="false" aria-controls="collapse<?= $i;?>"><?= $item['name'];?></button>
                                     </h4>
-                                    <div id="collapse<?= $i;?>" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                                    <div id="collapse<?= $i;?>" class="accordion-collapse collapse">
                                         <div class="accordion-body">
                                             <?= $item['description'];?>
                                         </div>

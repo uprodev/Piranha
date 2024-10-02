@@ -36,13 +36,3 @@ function svg_upload_allow( $mimes ) {
 
     return $mimes;
 }
-
-
-
-function my_acf_init() {
-    $key_map = get_field('google_map_api_key', 'options');
-
-	acf_update_setting('google_api_key', $key_map);
-}
-
-add_action('acf/init', 'my_acf_init');

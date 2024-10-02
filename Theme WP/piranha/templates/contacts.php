@@ -10,8 +10,6 @@ get_header();
 
 $mail = get_field('mail');
 $map = get_field('map');
-$lat = $map['lat'];
-$lng = $map['lng'];
 
 $location_title = get_field('location_title');
 $location_info = get_field('location_info');
@@ -39,9 +37,11 @@ $service_mail = get_field('service_mail');
 
             <div class="row">
                 <div class="col-md-6 col-lg-4 offset-lg-1">
-                    <div class="contact-map fade-in">
-                        <div id="map" data-lat="<?= $lat?$lat:'49.80528372958007';?>" data-lng="<?= $lat?$lat:'23.987265797303625';?>" data-icon="<?= get_template_directory_uri();?>/images/pin.png"></div>
-                    </div>
+                    <?php if($map):?>
+                        <div class="contact-map fade-in">
+                            <img src="<?= $map['url'];?>" alt="<?= $map['alt'];?>">
+                        </div>
+                    <?php endif;?>
                     <div class="contact-info fade-in-wrapper">
                         <?php if($location_title):?>
                             <h3><?= $location_title;?></h3>

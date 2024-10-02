@@ -48,9 +48,8 @@ $video_embed_link = get_field('video_embed_link');
 			<?php if($video_embed_link):?>
 				<div class="detail-media fade-in">
 					<div class="row">
-						<div class="col-lg-6 offset-lg-6 col-xl-5">
+						<div class="col-lg-6 offset-lg-1 col-xl-5">
 							<figure>
-								<!-- <video src="images/video.mp4" controls poster="images/news9.png"></video> -->
 								<iframe src="<?= $video_embed_link;?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 							</figure>
 						</div>
