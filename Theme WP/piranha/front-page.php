@@ -172,6 +172,7 @@ $title_products = get_field('title_products');
             <?php $prods = new WP_Query([
                 'post_type' => 'product',
                 'posts_per_page' => -1,
+                'suppress_filters' => false,
             ]);
 
             if($prods->have_posts()):?>
