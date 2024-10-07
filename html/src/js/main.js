@@ -1,3 +1,7 @@
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
 // lenis
 const lenis = new Lenis({
   lerp: 0.06,
@@ -54,22 +58,24 @@ document.querySelectorAll(".navbar-toggler").forEach((toggler) => {
 });
 
 // languages
-document.querySelector(".lang-switcher button").addEventListener("click", function (e) {
-  e.stopPropagation();
-  this.closest(".lang-switcher").classList.toggle("active");
-});
-document.querySelectorAll(".lang-switcher ul a").forEach((el) => {
-  el.addEventListener("click", function (e) {
+if (document.querySelector(".lang-switcher")) {
+  document.querySelector(".lang-switcher button").addEventListener("click", function (e) {
     e.stopPropagation();
-    e.preventDefault();
-    var text = this.innerText;
-    this.closest(".lang-switcher").querySelector("button").innerText = text;
-    this.closest(".lang-switcher").classList.remove("active");
+    this.closest(".lang-switcher").classList.toggle("active");
   });
-});
-document.addEventListener("click", function () {
-  document.querySelector(".lang-switcher").classList.remove("active");
-});
+  document.querySelectorAll(".lang-switcher ul a").forEach((el) => {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      // e.preventDefault();
+      var text = this.innerText;
+      this.closest(".lang-switcher").querySelector("button").innerText = text;
+      this.closest(".lang-switcher").classList.remove("active");
+    });
+  });
+  document.addEventListener("click", function () {
+    document.querySelector(".lang-switcher").classList.remove("active");
+  });
+}
 
 // video
 if (document.querySelector(".btn-sound")) {
@@ -78,9 +84,9 @@ if (document.querySelector(".btn-sound")) {
       e.preventDefault();
       const video = this.closest(".video").querySelector("video");
       if (video.muted) {
-        (video.muted = false), (this.querySelector("span").innerText = "sound off");
+        (video.muted = false), this.classList.add("off");
       } else {
-        (video.muted = true), (this.querySelector("span").innerText = "sound on");
+        (video.muted = true), this.classList.remove("off");
       }
     });
   });
@@ -242,11 +248,11 @@ if (document.querySelector(".animated-text-lines")) {
 
   splitLines();
 
-  var winWidth = $(window).width();
-  $(window).on("resize", function () {
-    if ($(window).width() !== winWidth) {
+  var winWidth = window.innerWidth;
+  window.addEventListener("resize", function () {
+    if (window.innerWidth !== winWidth) {
       splitLines();
-      winWidth = $(window).width();
+      winWidth = window.innerWidth;
     }
   });
 }

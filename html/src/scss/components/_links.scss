@@ -35,6 +35,22 @@
       width: 16px;
       margin-right: 5px;
     }
+
+    span {
+      &.txt-off {
+        display: none;
+      }
+    }
+    &.off {
+      span {
+        &.txt-on {
+          display: none;
+        }
+        &.txt-off {
+          display: inline;
+        }
+      }
+    }
   }
 }
 

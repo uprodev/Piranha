@@ -130,6 +130,12 @@
         display: block;
         margin: 0 0 0 41px;
 
+        img {
+          display: block;
+          width: 23px;
+          height: auto;
+        }
+
         &:hover {
           opacity: 0.65;
         }
