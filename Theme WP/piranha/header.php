@@ -37,12 +37,12 @@
                     echo '<div class="lang-switcher">';
                         foreach ( $languages as $lang ) {
                             if ( $lang['active'] ) {
-                                echo '<button type="button">'.$lang['language_code'].'</button>';
+                                echo '<button type="button">'.$lang['tag'].'</button>';
                             }
                         }
                         echo '<ul>';
                             foreach ( $languages as $lang ) {
-                                echo '<li><a href="' . $lang['url'] . '">' . $lang['language_code'] . '</a></li>';
+                                echo '<li><a href="' . $lang['url'] . '">' . $lang['tag'] . '</a></li>';
                             }
                         echo '</ul>';
                     echo '</div>';

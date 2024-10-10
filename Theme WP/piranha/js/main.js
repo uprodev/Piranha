@@ -1,3 +1,7 @@
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
 // lenis
 const lenis = new Lenis({
   lerp: 0.06,
@@ -21,24 +25,24 @@ var tlH1 = gsap.timeline({
   repeat: -1,
 });
 tlH1
-  .to(
-    ".title-animated span",
-    {
-      y: "-1em",
-      duration: 1,
-      ease: "power2.in",
-    },
-    "+=2"
-  )
-  .to(
-    ".title-animated span",
-    {
-      y: 0,
-      duration: 1,
-      ease: "power2.in",
-    },
-    "+=2"
-  );
+    .to(
+        ".title-animated span",
+        {
+          y: "-1em",
+          duration: 1,
+          ease: "power2.in",
+        },
+        "+=2"
+    )
+    .to(
+        ".title-animated span",
+        {
+          y: 0,
+          duration: 1,
+          ease: "power2.in",
+        },
+        "+=2"
+    );
 
 // navbar
 document.querySelectorAll(".navbar-toggler").forEach((toggler) => {
@@ -72,6 +76,7 @@ if (document.querySelector(".lang-switcher")) {
     document.querySelector(".lang-switcher").classList.remove("active");
   });
 }
+
 // video
 if (document.querySelector(".btn-sound")) {
   document.querySelectorAll(".btn-sound").forEach((btn) => {
@@ -79,9 +84,9 @@ if (document.querySelector(".btn-sound")) {
       e.preventDefault();
       const video = this.closest(".video").querySelector("video");
       if (video.muted) {
-        (video.muted = false), (this.querySelector("span").innerText = "sound off");
+        (video.muted = false), this.classList.add("off");
       } else {
-        (video.muted = true), (this.querySelector("span").innerText = "sound on");
+        (video.muted = true), this.classList.remove("off");
       }
     });
   });
@@ -104,59 +109,59 @@ if (document.querySelector(".home-banner")) {
     },
   });
   tlHomeSection
-    .set(".page-content", {
-      zIndex: 8,
-    })
-    .to(".home-section-1", {
-      opacity: 1,
-      marginTop: animationTop,
-      duration: 0.2,
-      ease: "none",
-    })
-    .to(".home-banner .section-panel", {
-      opacity: 0,
-      duration: 0.2,
-      ease: "none",
-    })
-    .to(".home-section-1", {
-      width: "100%",
-      marginTop: 0,
-      duration: 1.5,
-      ease: "expo.out",
-      onComplete: function () {
-        tlHomeSectionAnimated = true;
-        ScrollTrigger.refresh();
-        document.querySelector(".header").classList.remove("header-light");
-      },
-    })
-    .to(
-      ".home-section-1 .text",
-      {
+      .set(".page-content", {
+        zIndex: 8,
+      })
+      .to(".home-section-1", {
         opacity: 1,
-        duration: 0.4,
-        ease: "power2.in",
-      },
-      "-=1.2"
-    )
-    .to(
-      ".home-section-1 .video",
-      {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.in",
-      },
-      "+=0.4"
-    )
-    .to(
-      animatedColorChars.chars,
-      {
-        duration: 0.05,
+        marginTop: animationTop,
+        duration: 0.2,
         ease: "none",
-        color: "#3da9ff",
-        stagger: 0.05,
-      },
-      "-=1.1"
-    );
+      })
+      .to(".home-banner .section-panel", {
+        opacity: 0,
+        duration: 0.2,
+        ease: "none",
+      })
+      .to(".home-section-1", {
+        width: "100%",
+        marginTop: 0,
+        duration: 1.5,
+        ease: "expo.out",
+        onComplete: function () {
+          tlHomeSectionAnimated = true;
+          ScrollTrigger.refresh();
+          document.querySelector(".header").classList.remove("header-light");
+        },
+      })
+      .to(
+          ".home-section-1 .text",
+          {
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.in",
+          },
+          "-=1.2"
+      )
+      .to(
+          ".home-section-1 .video",
+          {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.in",
+          },
+          "+=0.4"
+      )
+      .to(
+          animatedColorChars.chars,
+          {
+            duration: 0.05,
+            ease: "none",
+            color: "#3da9ff",
+            stagger: 0.05,
+          },
+          "-=1.4"
+      );
 
   let mm = gsap.matchMedia();
   mm.add("(min-width: 1024px)", () => {
@@ -188,10 +193,10 @@ if (document.querySelector(".home-banner")) {
         trigger: ".animated-color",
         start: "top center",
       },
-      duration: 0.05,
+      duration: 0.04,
       ease: "none",
       color: "#3da9ff",
-      stagger: 0.05,
+      stagger: 0.03,
     });
 
     lenis.on("scroll", function () {
@@ -242,14 +247,13 @@ if (document.querySelector(".animated-text-lines")) {
   }
 
   splitLines();
-  jQuery(document).ready(function ($) {
-    var winWidth = $(window).width();
-    $(window).on("resize", function () {
-      if ($(window).width() !== winWidth) {
-        splitLines();
-        winWidth = $(window).width();
-      }
-    });
+
+  var winWidth = window.innerWidth;
+  window.addEventListener("resize", function () {
+    if (window.innerWidth !== winWidth) {
+      splitLines();
+      winWidth = window.innerWidth;
+    }
   });
 }
 
@@ -269,9 +273,9 @@ document.querySelectorAll(".fade-in, .fade-in-wrapper > *").forEach((el) => {
 
 var getUrlParameter = function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1),
-    sURLVariables = sPageURL.split("&"),
-    sParameterName,
-    i;
+      sURLVariables = sPageURL.split("&"),
+      sParameterName,
+      i;
   for (i = 0; i < sURLVariables.length; i++) {
     sParameterName = sURLVariables[i].split("=");
     if (sParameterName[0] === sParam) {
@@ -287,161 +291,4 @@ if (getUrlParameter("id")) {
   setTimeout(() => {
     lenis.scrollTo(dest, { duration: 1 });
   }, 2000);
-}
-
-function initMap() {
-  var stylers = [
-    {
-      featureType: "administrative",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          visibility: "on",
-        },
-      ],
-    },
-    {
-      featureType: "administrative",
-      elementType: "labels.text.fill",
-      stylers: [
-        {
-          color: "#0098DB ",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "all",
-      stylers: [
-        {
-          color: "#F2F2F2 ",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          color: "#FFFFFF ",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "labels.text",
-      stylers: [
-        {
-          color: "#0098DB ",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "labels.text.fill",
-      stylers: [
-        {
-          visibility: "simplified",
-        },
-      ],
-    },
-    {
-      featureType: "landscape.natural",
-      elementType: "labels.text.fill",
-      stylers: [
-        {
-          color: "#FF0000 ",
-        },
-      ],
-    },
-    {
-      featureType: "poi",
-      elementType: "all",
-      stylers: [
-        {
-          visibility: "off",
-        },
-      ],
-    },
-    {
-      featureType: "road",
-      elementType: "all",
-      stylers: [
-        {
-          saturation: -100,
-        },
-        {
-          lightness: 45,
-        },
-      ],
-    },
-    {
-      featureType: "road.highway",
-      elementType: "all",
-      stylers: [
-        {
-          visibility: "simplified",
-        },
-      ],
-    },
-    {
-      featureType: "road.local",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          color: "#F4F4F4 ",
-        },
-      ],
-    },
-    {
-      featureType: "road.local",
-      elementType: "geometry.stroke",
-      stylers: [
-        {
-          color: "#F4F4F4 ",
-        },
-      ],
-    },
-    {
-      featureType: "transit",
-      elementType: "all",
-      stylers: [
-        {
-          visibility: "off",
-        },
-      ],
-    },
-    {
-      featureType: "water",
-      elementType: "all",
-      stylers: [
-        {
-          color: "#F5F8FA ",
-        },
-        {
-          visibility: "on",
-        },
-      ],
-    },
-  ];
-
-  if (document.getElementById("map")) {
-    let map,
-      mapContainer = document.getElementById("map"),
-      mapImage = mapContainer.getAttribute("data-icon"),
-      mapLat = parseFloat(mapContainer.getAttribute("data-lat")),
-      mapLng = parseFloat(mapContainer.getAttribute("data-lng"));
-
-    map = new google.maps.Map(mapContainer, {
-      center: { lat: mapLat, lng: mapLng },
-      zoom: 13,
-      styles: stylers,
-    });
-
-    let marker = new google.maps.Marker({
-      map: map,
-      position: { lat: mapLat, lng: mapLng },
-      icon: mapImage,
-    });
-  }
 }
