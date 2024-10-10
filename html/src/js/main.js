@@ -1,10 +1,6 @@
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-};
-
 // lenis
 const lenis = new Lenis({
-  lerp: 0.06,
+  lerp: 0.3,
 });
 
 function raf(time) {
@@ -95,123 +91,75 @@ if (document.querySelector(".btn-sound")) {
 //animate home page
 if (document.querySelector(".home-banner")) {
   const animatedColorChars = SplitType.create(".animated-color", { types: "words, chars" });
+  const start = window.innerHeight - 125;
 
-  var tlHomeSectionAnimated = false;
-  var animationTop = window.innerHeight - 125;
-  var tlHomeSection = gsap.timeline({
-    paused: true,
+  lenis.on("scroll", function () {
+    if (lenis.actualScroll < start) {
+      document.querySelector(".header").classList.add("header-light");
+    }
+  });
+
+  document.querySelector(".scroll-link").addEventListener("click", function (e) {
+    e.preventDefault();
+    lenis.scrollTo(document.querySelector(".home-section-1"), { duration: 1 });
+  });
+
+  gsap.to(".home-section-1", {
+    scrollTrigger: {
+      trigger: ".home-section-1",
+      scrub: true,
+      start: "top " + start,
+      end: "top top",
+    },
+    width: "100%",
     onComplete: function () {
-      ScrollTrigger.refresh();
-    },
-    onReverseComplete: function () {
-      tlHomeSectionAnimated = false;
-      ScrollTrigger.refresh();
+      document.querySelector(".header").classList.remove("header-light");
     },
   });
-  tlHomeSection
-    .set(".page-content", {
-      zIndex: 8,
-    })
-    .to(".home-section-1", {
-      opacity: 1,
-      marginTop: animationTop,
-      duration: 0.2,
-      ease: "none",
-    })
-    .to(".home-banner .section-panel", {
-      opacity: 0,
-      duration: 0.2,
-      ease: "none",
-    })
-    .to(".home-section-1", {
-      width: "100%",
-      marginTop: 0,
-      duration: 1.5,
-      ease: "expo.out",
-      onComplete: function () {
-        tlHomeSectionAnimated = true;
-        ScrollTrigger.refresh();
-        document.querySelector(".header").classList.remove("header-light");
-      },
-    })
-    .to(
-      ".home-section-1 .text",
-      {
-        opacity: 1,
-        duration: 0.4,
-        ease: "power2.in",
-      },
-      "-=1.2"
-    )
-    .to(
-      ".home-section-1 .video",
-      {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.in",
-      },
-      "+=0.4"
-    )
-    .to(
-      animatedColorChars.chars,
-      {
-        duration: 0.05,
-        ease: "none",
-        color: "#3da9ff",
-        stagger: 0.05,
-      },
-      "-=1.4"
-    );
 
-  let mm = gsap.matchMedia();
-  mm.add("(min-width: 1024px)", () => {
-    lenis.on("scroll", function () {
-      if (lenis.direction === 1) {
-        if (lenis.actualScroll > 0 && lenis.actualScroll < window.innerHeight) {
-          if (!tlHomeSectionAnimated) {
-            lenis.scrollTo(0, { duration: 0 });
-            tlHomeSection.play();
-          }
-        }
-      } else {
-        if (lenis.actualScroll > 0 && lenis.targetScroll === 0) {
-          if (tlHomeSectionAnimated) {
-            document.querySelector(".header").classList.add("header-light");
-            tlHomeSection.reverse(1.2, { duration: 0.2 });
-          }
-        }
-      }
-    });
-    document.querySelector(".scroll-link").addEventListener("click", function (e) {
-      e.preventDefault();
-      tlHomeSection.play();
-    });
+  gsap.to(".home-section-1", {
+    scrollTrigger: {
+      trigger: ".home-section-1",
+      scrub: true,
+      start: "top bottom",
+      end: () => `+=125`,
+    },
+    opacity: 1,
   });
-  mm.add("(max-width: 1023px)", () => {
-    gsap.to(animatedColorChars.chars, {
+
+  gsap.to(".home-section-1 .text", {
+    scrollTrigger: {
+      trigger: ".home-section-1 .text",
+      start: "top 90%",
+    },
+    opacity: 1,
+    duration: 0.4,
+    ease: "power2.in",
+  });
+  gsap.to(animatedColorChars.chars, {
+    scrollTrigger: {
+      trigger: ".home-section-1 .text",
+      start: "top 50%",
+    },
+    duration: 0.05,
+    ease: "none",
+    color: "#3da9ff",
+    stagger: 0.05,
+  });
+
+  gsap.to(
+    ".home-section-1 .video",
+    {
       scrollTrigger: {
-        trigger: ".animated-color",
-        start: "top center",
+        trigger: ".home-section-1 .video",
+        start: "top 90%",
       },
-      duration: 0.04,
-      ease: "none",
-      color: "#3da9ff",
-      stagger: 0.03,
-    });
-
-    lenis.on("scroll", function () {
-      if (lenis.actualScroll > window.innerHeight) {
-        document.querySelector(".header").classList.remove("header-light");
-      } else {
-        document.querySelector(".header").classList.add("header-light");
-      }
-    });
-
-    document.querySelector(".scroll-link").addEventListener("click", function (e) {
-      e.preventDefault();
-      lenis.scrollTo(document.querySelector(".home-section-1"), { duration: 1 });
-    });
-  });
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.in",
+    },
+    "+=0.4"
+  );
 }
 
 if (document.querySelector(".animated-text-lines")) {
